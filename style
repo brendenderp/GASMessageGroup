@@ -1,0 +1,243 @@
+<style>
+
+  .loading-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  
+
+.loader {
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.1s infinite ease;
+  transform: translateZ(0);
+}
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow: 0em -2.6em 0em 0em #ffffff, 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.5), -1.8em -1.8em 0 0em rgba(255,255,255, 0.7);
+  }
+  12.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.7), 1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.5);
+  }
+  25% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.5), 1.8em -1.8em 0 0em rgba(255,255,255, 0.7), 2.5em 0em 0 0em #ffffff, 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  37.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.5), 2.5em 0em 0 0em rgba(255,255,255, 0.7), 1.75em 1.75em 0 0em #ffffff, 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  50% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.5), 1.75em 1.75em 0 0em rgba(255,255,255, 0.7), 0em 2.5em 0 0em #ffffff, -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  62.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.5), 0em 2.5em 0 0em rgba(255,255,255, 0.7), -1.8em 1.8em 0 0em #ffffff, -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  75% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.5), -1.8em 1.8em 0 0em rgba(255,255,255, 0.7), -2.6em 0em 0 0em #ffffff, -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  87.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.5), -2.6em 0em 0 0em rgba(255,255,255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+  }
+}
+
+
+
+
+
+/* Mobile Screen styles */
+.input-container {
+    margin-top: auto;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+}
+
+input[type="text"] {
+    width: 100vw; /* Adjust the width as needed */
+    padding: 1vw; /* Adjust the padding as needed */
+    margin: 1vw 0; /* Adjust the margin as needed */
+    border: 2px solid #ddd;
+    border-right: none;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 14px; /* Adjust the font size as needed */
+}
+
+button {
+    padding: 1vw; /* Adjust the padding as needed */
+    margin: 1vw 0; /* Adjust the margin as needed */
+    border: 2px solid #ddd;
+    background-color: #5cb85c;
+     font-size: 14px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+//message Styling
+ #message-body {
+ 
+  
+      margin: 20px; /* Add margin around the message container */
+      margin-bottom: 90px;
+           overflow-x: hidden;
+        overflow-y: auto;
+      
+}
+
+.message-container {
+    background-color: #4CAF50;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 75%;
+    position: relative;
+   ;
+    margin-bottom: 15px;
+    border-radius: 15px 15px 15px 0px;
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    float: left;
+    clear: both; /* Add this line to prevent stacking  on left*/
+     
+}
+
+.self-container {
+    background-color: #df74e3;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 75%;
+    position: relative;
+    margin-bottom: 15px;
+    border-radius: 15px 15px 0px 15px;
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    float: right;
+    clear: both; /* Add this line to prevent stacking on right */
+    
+}
+
+
+
+
+    .username {
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 5px;
+       font-size: 14px;
+    }
+
+.message-time {
+      font-size: 8px;
+      color: #c3c4c7
+     
+    }
+
+
+    .message-body {
+      font-size: 16px;
+      color: #fff;
+       font-size: 14px;
+    }
+
+    /* Example header styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+
+ 
+ 
+  
+ 
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+ 
+            100% {
+                opacity: 1;
+            }
+        }
+
+//login page
+
+.login-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  
+  /* Centering styles */
+  position: fixed; /* or 'absolute' if 'fixed' isn't suitable for your use case */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Optional: Set a specific size */
+  width: 90%; /* or any specific size */
+  max-width: 500px; /* for example, to not let it grow too large on wide screens */
+
+  /* Ensure it stays on top */
+  z-index: 1000; /* You can adjust this value as needed */
+}
+
+
+
+.login-container h1 {
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.start-chatting-btn {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.start-chatting-btn:hover {
+  background-color: #45a049;
+}
+
+
+
+
+</style>
