@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+   
+
+
+
+<div id="message-container">
+  <!-- Add more message containers as needed -->
+</div>
+
+
+<!-- Text box and button container -->
+<div class="input-container">
+    <input type="text" id="message" placeholder="Type a message...">
+    <button type="submit">Send</button>
+</div>
+
+
+</body>
+</html>
+
+<script>
+  //If you press enter send message. 
+document.getElementById('message').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default action to stop from any form submission
+            sendMessage();
+        }
+</script>
+  
