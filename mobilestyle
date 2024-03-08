@@ -1,0 +1,187 @@
+<style>
+
+  .loading-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+/* Mobile Screen styles */
+.input-container {
+    margin-top: auto;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+}
+
+input[type="text"] {
+    width: 90vw; /* Adjust the width as needed */
+    padding: 4vw; /* Adjust the padding as needed */
+    margin: 2vw 0; /* Adjust the margin as needed */
+    border: 2px solid #ddd;
+    border-right: none;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 50px; /* Adjust the font size as needed */
+}
+
+button {
+    padding: 4vw; /* Adjust the padding as needed */
+    margin: 2vw 0; /* Adjust the margin as needed */
+    border: 2px solid #ddd;
+    background-color: #5cb85c;
+     font-size: 50px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+//message Styling
+ #message-body {
+    
+      margin: 20px; /* Add margin around the message container */
+      margin-bottom: 180px;
+           overflow-x: hidden;
+        overflow-y: auto;
+      
+    }
+
+.message-container {
+    background-color: #4CAF50;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 75%;
+    position: relative;
+   ;
+    margin-bottom: 15px;
+    border-radius: 15px 15px 15px 0px;
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    float: left;
+    clear: both; /* Add this line to prevent stacking  on left*/
+     
+}
+
+.self-container {
+    background-color: #df74e3;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 75%;
+    position: relative;
+    margin-bottom: 15px;
+    border-radius: 15px 15px 0px 15px;
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    float: right;
+    clear: both; /* Add this line to prevent stacking on right */
+    
+} 
+
+    .username {
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 5px;
+       font-size: 50px;
+    }
+
+    .message-body {
+      font-size: 16px;
+      color: #fff;
+       font-size: 50px;
+    }
+.message-time {
+      font-size: 10spx;
+      color: #c3c4c7
+  
+    }
+    /* Example header styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+
+
+       @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+ 
+            100% {
+                opacity: 1;
+            }
+        }
+
+.login-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  
+  /* Centering styles */
+  position: fixed; /* or 'absolute' if 'fixed' isn't suitable for your use case */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Optional: Set a specific size */
+  width: 90%; /* or any specific size */
+  max-width: 800px; /* for example, to not let it grow too large on wide screens */
+
+  /* Ensure it stays on top */
+  z-index: 1000; /* You can adjust this value as needed */
+}
+
+
+.login-container h1 {
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.start-chatting-btn {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 60px;
+}
+
+.start-chatting-btn:hover {
+  background-color: #45a049;
+}
+
+
+
+
+
+</style>
