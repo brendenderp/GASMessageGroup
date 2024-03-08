@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <script>
+        // Global state for tracking the latest message timestamp
+        let latestUnixTime = 0;
+        let ClientUser = ""; // Track the client user globally, initialized to an empty string
+
+        // Function to apply the correct stylesheet based on the device type
+        function applyStylesheetBasedOnDevice() {
+            const userAgent = navigator.userAgent;
+            if (/Mobile/i.test(userAgent)) {
+                applyMobileStylesheet();
+            } else {
+                applyDesktopStylesheet();
+            }
+        }
+
+        // Handler for desktop styles
+        function applyDesktopStylesheet() {
+            console.log('Applying desktop stylesheet');
+            google.script.run.withSuccessHandler(updateStylesheet).DesktopStyle();
+        }
+
+        // Handler for mobile styles
+        function applyMobileStylesheet() {
+            console.log('Applying mobile stylesheet');
+            google.script.run.withSuccessHandler(updateStylesheet).MobileStyle();
+        }
+
+        // Update the page stylesheet based on device type
+        function updateStylesheet(content) {
+            document.getElementById('Style').innerHTML = content;
+        }
+
+        // Loads and displays the loading content
+        function loadLoadingContent() {
+            google.script.run.withSuccessHandler(onContentLoaded).getLoadingContent();
+        }
+
+        // Handles the content loaded event
+        function onContentLoaded(content) {
+            document.getElementById('loading-content').innerHTML = `<div class="loading-container">${content}</div>`;
+            setTimeout(() => document.getElementById('loading-content').innerHTML = '', 2000); // Clear after 2s
+            loadLogin();
+        }
+
+        // Initiates the login process
+        function loadLogin() {
+            google.script.run.withSuccessHandler(onLoginContentLoaded).getLoginContent();
+        }
+
+        // Displays the login content
+        function onLoginContentLoaded(content) {
+            document.getElementById('login-content').innerHTML = `<div class="login-container">${content}</div>`;
+        }
+
+        // Login function
+        function login() {
+            const user = document.getElementById('username').value;
+            ClientUser = user; // Update the global client user
+            google.script.run.withSuccessHandler(onMainContentLoaded).getMainContent();
+            document.getElementById('login-content').innerHTML = ''; // Clear login content
+        }
+
+        // Function to display main content after login
+        function onMainContentLoaded(content) {
+            document.getElementById('main-content').innerHTML = `<div class="main-container">${content}</div>`;
+            setupMessageEventListeners(); // Setup message event listeners after main content is loaded
+        }
+
+        // Send message function
+        function sendMessage() {
+            const message = document.getElementById('message').value;
+            document.getElementById('message').value = ''; // Clear input
+            google.script.run.sendMessageToServer(message, ClientUser);
+        }
+
+        // Setup event listeners for message input and send button
+        function setupMessageEventListeners() {
+            const messageInput = document.getElementById('message');
+            if (messageInput) {
+                messageInput.addEventListener('keypress', e => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+            }
+
+            const sendButton = document.querySelector('button[type="submit"]');
+            if (sendButton) {
+                sendButton.addEventListener('click', e => {
+                    e.preventDefault();
+                    sendMessage();
+                });
+            }
+        }
+
+   function updateMessages(messages) {
+    var container = document.getElementById('message-body');
+
+    // Filter messages based on UNIX time
+    var newMessages = messages.filter(function(message) {
+        return message[0] > latestUnixTime;
+    });
+
+    if (newMessages.length > 0) {
+        latestUnixTime = newMessages[newMessages.length - 1][0];
+        console.log("New messages:", newMessages);
+    }
+
+    // Process each new message
+    newMessages.forEach(function(message) {
+        var messageContainer = document.createElement('div');
+
+        // Combine UNIX time and username for the existing class
+        var messageClass = message[0] + '-' + message[2];
+
+        // Differentiate between the client's messages and others
+        if (message[2] != ClientUser) {
+            messageContainer.className = 'message-container';
+        } else {
+            messageContainer.className = 'self-container';
+        }
+
+        const date = new Date(message[0] * 1000); // Convert UNIX timestamp to Date
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const isPM = hours >= 12;
+        const formattedHours = hours % 12 || 12; // Convert 24h to 12h format
+        const formattedTime = `${formattedHours}:${minutes < 10 ? '0' + minutes : minutes} ${isPM ? 'PM' : 'AM'}`; // Format time string
+
+        var username = document.createElement('div');
+        username.className = 'username';
+        username.textContent = `${message[2]} @ ${formattedTime}`; // Display username and formatted time
+
+        var messageBody = document.createElement('div');
+        messageBody.className = 'message-body';
+        messageBody.textContent = message[1]; // Display the message text
+
+        // Optional: Create and use an identification div if needed
+        var identificationDiv = document.createElement('div');
+        identificationDiv.className = messageClass; // Customize this class name as needed
+
+        var msgtime = document.createElement('div');
+        msgtime.className = 'message-time';
+        msgtime.textContent = formattedTime; // Display message time
+
+        // Assemble the message container
+        messageContainer.appendChild(username);
+        messageContainer.appendChild(messageBody);
+        messageContainer.appendChild(msgtime);
+        messageContainer.appendChild(identificationDiv); // Append identification div if used
+        container.appendChild(messageContainer);
+
+    // Adjust scrolling for new messages
+    var messageBodyElement = document.getElementById("message-body");
+    messageBody.scrollIntoView({ behavior: "smooth", block: "end" });
+    var textBoxHeight = 40; // Adjust this value based on the height of your text box
+    var scrollPosition = messageBody.getBoundingClientRect().bottom - textBoxHeight;
+
+
+    // Scroll slightly lower by subtracting the text box height
+    window.scrollBy(0, scrollPosition);
+  });
+
+    console.log("Messages Checked");
+}
+
+
+        // Periodically check for new messages if the user is logged in
+        setInterval(() => {
+            if (ClientUser) {
+                google.script.run.withSuccessHandler(updateMessages).pollForAllMessages(latestUnixTime);
+            }
+        }, 2000); // Adjusted interval to reduce load
+
+        // Initial calls to load content and apply correct stylesheet
+        window.onload = () => {
+            loadLoadingContent();
+            applyStylesheetBasedOnDevice();
+        };
+    </script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #5f6163;">
+    <h1>Chat-app written entirely in Google App Scripts. The only data collected is what you type and send. IP isn't logged, nor are cookies used.</h1>
+    <div id="login-content"></div>
+    <div id="loading-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+    <div id="message-body"></div>
+    <div id="main-content"></div>
+    <div id="Style"></div>
+</body>
+</html>
